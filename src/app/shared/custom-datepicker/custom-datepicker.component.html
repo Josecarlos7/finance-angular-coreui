@@ -1,0 +1,60 @@
+<div class="custom-datepicker">
+  <!-- Input trigger -->
+  <div class="input-wrapper" (click)="toggleCalendar()" (blur)="closeCalendar()" tabindex="0">
+    <div class="selected-value" [class.placeholder]="!selectedDate">
+      {{ getDisplayValue() }}
+    </div>
+    <div class="calendar-icon">
+      <i class="cil-calendar"></i>
+    </div>
+  </div>
+
+  <!-- Calendario dropdown -->
+  <div class="calendar-dropdown" [class.show]="isOpen">
+    <!-- Header del calendario -->
+    <div class="calendar-header">
+      <button class="nav-btn" (click)="previousMonth()" type="button">
+        <i class="cil-chevron-left"></i>
+      </button>
+      
+      <div class="month-year">
+        <span class="month">{{ months[currentMonth] }}</span>
+        <span class="year">{{ currentYear }}</span>
+      </div>
+      
+      <button class="nav-btn" (click)="nextMonth()" type="button">
+        <i class="cil-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- Días de la semana -->
+    <div class="week-days">
+      <div class="week-day" *ngFor="let day of weekDays">
+        {{ day }}
+      </div>
+    </div>
+
+    <!-- Días del mes -->
+    <div class="calendar-grid">
+      <div 
+        *ngFor="let day of daysInMonth; let i = index"
+        class="calendar-day"
+        [class.current-month]="isCurrentMonth(day)"
+        [class.other-month]="!isCurrentMonth(day)"
+        [class.today]="isToday(day)"
+        [class.selected]="isSelected(day)"
+        (click)="selectDate(day)"
+        (mousedown)="$event.preventDefault()"
+      >
+        {{ day.getDate() }}
+      </div>
+    </div>
+
+    <!-- Footer con acciones -->
+    <div class="calendar-footer">
+      <button class="btn-today" (click)="selectToday()">
+        Hoy
+      </button>
+    </div>
+  </div>
+</div>

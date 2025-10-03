@@ -1,1 +1,63 @@
-<p>usuarios works!</p>
+<c-row ngPreserveWhitespaces>
+    <c-col xs="12">
+        <c-card class="mb-4">
+            <c-card-header>
+                <strong>USUARIOS</strong>
+            </c-card-header>
+            <c-card-body>
+                <button (click)="abrirModalRegistro()" cButton>Launch demo modal</button>
+
+
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>
+<!-- INICIO DE MODAL -->
+<c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleAbrirModalRegistro($event)" size="lg">
+    <c-modal-header>
+        <h5 cModalTitle>Registrar Gasto</h5>
+        <button (click)="abrirModalRegistro()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>
+
+        <form cForm class="row g-3">
+            <div class="mb-3 col-md-6">
+                <label cLabel for="monto">Monto</label>
+                <input cFormControl id="monto" placeholder="Monto" type="number" />
+            </div>
+            <div class="mb-3 col-md-6">
+                <label cLabel for="concepto">Concepto</label>
+                <input cFormControl id="concepto" placeholder="Concepto" type="text" appDecimalOnly />
+            </div>
+            <div class="mb-3 col-md-6" >
+                <label cLabel for="concepto">Fecha</label>
+                <input cFormControl id="concepto" placeholder="Fecha" type="date"/> 
+            </div>
+            <div class="mb-3 col-md-6" >
+                <label cLabel for="concepto">Hora</label>
+                <input cFormControl id="concepto" placeholder="Hora" type="time"/> 
+            </div> 
+
+
+            <div class="mb-3">
+      <label class="form-label">Selecciona una fecha:</label>
+      <app-custom-datepicker 
+        [(ngModel)]="miFecha"
+        (dateChange)="onDateChange($event)"
+        placeholder="Elige una fecha">
+      </app-custom-datepicker>
+    </div>
+
+
+
+        </form>
+
+    </c-modal-body>
+    <c-modal-footer>
+        <button (click)="abrirModalRegistro()" cButton color="secondary">
+            Close
+        </button>
+        <button cButton color="primary">Save changes</button>
+    </c-modal-footer>
+</c-modal>
+<!-- INICIO DE MODAL -->
